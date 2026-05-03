@@ -2,327 +2,387 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Z-LINK V5.1 - Ficha Técnica</title>
     <style>
-        /* Configurações da Página A4 */
-        @page {
-            size: A4 portrait;
-            margin: 0;
+        /* Configurações Globais e de Visualização */
+        :root {
+            --dark-blue: #0B3D91;
+            --med-blue: #1F4E79;
+            --light-gray: #F8F9FA;
+            --med-gray: #CCCCCC;
+            --yellow: #FFD966;
+            --danger: #D9534F;
+            --white: #FFFFFF;
         }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            width: 210mm;
-            height: 297mm;
-            margin: 0 auto;
-            background: white;
-            color: #333;
+            background-color: #525659; /* Cor de fundo estilo leitor de PDF */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
-            flex-direction: column;
-            padding: 12mm;
+            justify-content: center;
+            padding: 20px 0;
         }
 
-        /* Paleta de Cores e Tipografia */
-        :root {
-            --dark-blue: #0B3D91;
-            --med-blue: #1F4E79;
-            --light-gray: #F2F2F2;
-            --med-gray: #BFBFBF;
-            --yellow: #FFD966;
-            --white: #FFFFFF;
+        /* Container da Folha A4 */
+        .page {
+            width: 210mm;
+            height: 296.5mm; /* Ajuste fino para evitar quebra de página indevida */
+            background: var(--white);
+            padding: 12mm;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
-        h1, h2, h3, h4 { font-weight: bold; }
 
         /* Cabeçalho */
         .header {
             background-color: var(--dark-blue);
             color: var(--white);
-            padding: 15px 20px;
+            padding: 20px;
             border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-            margin-bottom: 12px;
+            margin-bottom: 20px;
         }
-        .header-title h1 { font-size: 20pt; letter-spacing: 1px; margin-bottom: 4px; }
-        .header-title h2 { font-size: 11pt; color: var(--light-gray); font-weight: 400; }
-        .header-brand { font-size: 14pt; font-weight: bold; color: var(--yellow); text-align: right; }
 
-        /* Tabela de Pinagem */
+        .header-title h1 { 
+            font-size: 24pt; 
+            letter-spacing: 2px; 
+            line-height: 1;
+        }
+        .header-title h2 { 
+            font-size: 10pt; 
+            color: var(--yellow); 
+            text-transform: uppercase;
+            font-weight: 400;
+            margin-top: 5px;
+        }
+        .header-brand { 
+            font-size: 18pt; 
+            font-weight: 900; 
+            border-left: 2px solid var(--yellow);
+            padding-left: 15px;
+        }
+
+        /* Títulos de Seção */
         .section-title {
-            font-size: 12pt;
+            font-size: 13pt;
             color: var(--dark-blue);
-            margin-bottom: 6px;
+            margin: 15px 0 8px 0;
             border-bottom: 2px solid var(--dark-blue);
-            padding-bottom: 2px;
-        }
-        .warning-text {
-            font-size: 9pt;
-            color: #D9534F;
+            padding-bottom: 3px;
+            display: flex;
+            align-items: center;
             font-weight: bold;
-            margin-bottom: 8px;
         }
+
+        .warning-text {
+            font-size: 9.5pt;
+            color: var(--danger);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Tabela */
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 8.5pt;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
+            font-size: 9pt;
+            margin-bottom: 15px;
         }
-        th, td {
-            padding: 7px 10px;
-            text-align: left;
-            border: 1px solid var(--med-gray);
-        }
+
         th {
             background-color: var(--med-blue);
             color: var(--white);
-            font-weight: bold;
-            font-size: 9pt;
+            text-transform: uppercase;
+            font-size: 8.5pt;
+            padding: 10px;
+            border: 1px solid var(--med-blue);
         }
-        tr:nth-child(even) { background-color: var(--light-gray); }
-        tr:nth-child(odd) { background-color: var(--white); }
-        td:first-child { font-weight: bold; text-align: center; color: var(--dark-blue); }
 
-        /* Modos de Operação */
-        .modes-container {
+        td {
+            padding: 8px 10px;
+            border: 1px solid var(--med-gray);
+            line-height: 1.2;
+        }
+
+        tr:nth-child(even) { background-color: var(--light-gray); }
+        td:first-child { 
+            font-weight: bold; 
+            text-align: center; 
+            color: var(--dark-blue);
+            width: 50px;
+        }
+
+        /* Grid de Modos e Detalhes */
+        .grid-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 12px;
+            gap: 15px;
+            margin-bottom: 15px;
         }
+
         .card {
-            background-color: var(--light-gray);
+            border: 1px solid var(--med-gray);
+            border-left: 6px solid var(--dark-blue);
             border-radius: 8px;
             padding: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-left: 5px solid var(--dark-blue);
+            background-color: #fcfcfc;
         }
+
         .card h3 {
             font-size: 11pt;
             color: var(--dark-blue);
             margin-bottom: 8px;
-        }
-        .card ul {
-            list-style-type: none;
-            font-size: 8.5pt;
-        }
-        .card ul li {
-            margin-bottom: 6px;
-            position: relative;
-            padding-left: 12px;
-            line-height: 1.3;
-        }
-        .card ul li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--med-blue);
-            font-weight: bold;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
         }
 
-        /* Inferior: Zello e QR Code */
-        .bottom-container {
+        .card ul {
+            list-style: none;
+            font-size: 8.8pt;
+        }
+
+        .card ul li {
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            font-size: 7pt;
+            top: 3px;
+            color: var(--med-blue);
+        }
+
+        /* Box Zello e QR */
+        .bottom-row {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 12px;
-            margin-bottom: 12px;
-            flex-grow: 1; 
+            grid-template-columns: 1.8fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
         }
-        
+
         .zello-box {
-            background-color: var(--yellow);
+            background-color: #fff9e6;
+            border: 2px solid var(--yellow);
             border-radius: 8px;
-            padding: 12px;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-            border: 2px solid #E6B800;
+            padding: 15px;
         }
+
         .zello-box h3 {
-            font-size: 12pt;
             color: #b30000;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
+            font-size: 12pt;
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
+
         .zello-box p {
             font-size: 9pt;
             font-weight: bold;
+            text-decoration: underline;
             margin-bottom: 8px;
-            color: #333;
         }
+
         .zello-box ul {
             font-size: 8.5pt;
-            padding-left: 16px;
-            line-height: 1.3;
-            color: #222;
+            padding-left: 18px;
         }
-        .zello-box ul li { margin-bottom: 5px; }
 
-        /* NOVA CONFIGURAÇÃO DA CAIXA DO QR CODE */
         .qr-box {
-            background-color: var(--light-gray);
+            border: 1px solid var(--med-gray);
             border-radius: 8px;
-            padding: 8px; /* Padding reduzido para dar mais espaço à imagem */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: var(--light-gray);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--med-gray);
-            overflow: hidden; /* Evita que a imagem vaze da caixa */
+            padding: 10px;
         }
+
         .qr-box img {
             width: 100%;
-            height: 100%;
-            max-height: 180px; /* Proteção para não distorcer o layout da página */
-            object-fit: contain; /* Faz a imagem crescer o máximo possível sem cortar ou amassar */
+            max-width: 160px;
+            height: auto;
+            mix-blend-mode: multiply;
+        }
+
+        .qr-box span {
+            font-size: 7pt;
+            margin-top: 5px;
+            color: #666;
+            font-weight: bold;
         }
 
         /* Nota Técnica */
         .tech-note {
             background-color: var(--dark-blue);
             color: var(--white);
+            padding: 12px 20px;
             border-radius: 8px;
-            padding: 10px 15px;
-            font-size: 8.5pt;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 12px;
+            font-size: 9pt;
         }
-        .tech-note h4 { font-size: 11pt; margin-bottom: 6px; color: var(--yellow); }
-        .tech-note ul { padding-left: 15px; line-height: 1.3; }
-        .tech-note ul li { margin-bottom: 4px; }
+
+        .tech-note h4 {
+            color: var(--yellow);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
 
         /* Rodapé */
         .footer {
-            margin-top: auto; 
+            margin-top: auto;
             text-align: center;
             font-size: 8pt;
-            font-weight: bold;
             color: var(--med-blue);
             border-top: 1px solid var(--med-gray);
-            padding-top: 8px;
+            padding-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* Ajustes para Impressão */
+        @media print {
+            body { background: none; padding: 0; }
+            .page { 
+                box-shadow: none; 
+                margin: 0; 
+                width: 210mm; 
+                height: 297mm;
+            }
+            .header { -webkit-print-color-adjust: exact; }
+            .zello-box { -webkit-print-color-adjust: exact; border: 2px solid #E6B800 !important; }
+            .tech-note { -webkit-print-color-adjust: exact; }
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="header-title">
-            <h1>Z-LINK V5.1</h1>
-            <h2>FICHA TÉCNICA – INTERFACE UNIVERSAL PARA RÁDIOS BASE E HT</h2>
-        </div>
-        <div class="header-brand">
-            Diniz-RF
-        </div>
-    </div>
+    <div class="page">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <div class="header-title">
+                <h1>Z-LINK V5.1</h1>
+                <h2>Interface Universal para Rádios Base, Móveis e HT</h2>
+            </div>
+            <div class="header-brand">Diniz-RF</div>
+        </header>
 
-    <div class="section-title">📊 TABELA DE PINAGEM</div>
-    <div class="warning-text">⚠️ IMPORTANTE: A pinagem refere-se ao conector RJ45 da interface Z-Link</div>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 10%;">PINO</th>
-                <th style="width: 25%;">FUNÇÃO</th>
-                <th style="width: 65%;">DESCRIÇÃO TÉCNICA</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Entrada RX (Base)</td>
-                <td>Entrada de áudio para rádios móveis. Possui capacitor de 10µF integrado para isolamento DC e proteção</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>COR Negativo</td>
-                <td>Ativação via aterramento (GND). Padrão Motorola (GM300, PRO5100)</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Saída TX (Mic)</td>
-                <td>Envia o áudio do Zello para a entrada de microfone do rádio transmissor</td>
-            </tr>
-            <tr>
-                <td>4 / 6</td>
-                <td>GND</td>
-                <td>Terra comum para áudio, sinais de controle e referência elétrica</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>PTT Rádio</td>
-                <td>Comando de transmissão (fechamento com o GND para acionar TX)</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>COR Positivo</td>
-                <td>Ativação via nível positivo (1.5V a 12V). Padrão Vertex/Yaesu</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>RX + COR (HT)</td>
-                <td>Entrada unificada para áudio e detecção de portadora em rádios portáteis</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="section-title">🔧 MODOS DE OPERAÇÃO</div>
-    <div class="modes-container">
-        <div class="card">
-            <h3>🔷 MODO RÁDIO BASE</h3>
-            <p style="font-size: 8.5pt; margin-bottom: 6px; font-weight: bold;">Destinado a rádios móveis ou fixos com conector traseiro ou frontal</p>
-            <ul>
-                <li><strong>Áudio RX:</strong> conectar ao pino 1</li>
-                <li>O capacitor interno de 10µF garante isolamento galvânico, fidelidade e proteção do circuito</li>
-                <li><strong>Sinalização:</strong> utilizar pino 2 (GND) ou pino 7 (nível positivo), conforme saída de squelch/busy do rádio</li>
-                <li><strong>Exemplos:</strong> GM300, VX-2100, IC-V8000, M120</li>
-            </ul>
-        </div>
-        <div class="card">
-            <h3>🔷 MODO RÁDIO HT (K-PLUG)</h3>
-            <p style="font-size: 8.5pt; margin-bottom: 6px; font-weight: bold;">Destinado a rádios portáteis com conector padrão de 2 pinos</p>
-            <ul>
-                <li>Utilizar o pino 8 para receber áudio e detectar a portadora simultaneamente</li>
-                <li>Dispensa modificações internas no rádio</li>
-                <li>A detecção é feita pela presença de sinal no alto-falante</li>
-                <li><strong>Exemplos:</strong> Baofeng 777s/UV-5R, Quansheng UV-K5</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="bottom-container">
-        <div class="zello-box">
-            <h3>⚠️ CONFIGURAÇÃO OBRIGATÓRIA DO ZELLO</h3>
-            <p>É PROIBIDO usar VOX. A interface realiza o chaveamento mecânico.</p>
-            <ul>
-                <li>Em <strong>Opções > Botão PTT</strong>, clique no <strong>+</strong> e transmita para o rádio conectado à Z-Link. O sistema detectará automaticamente o botão PTT (F7)</li>
-                <li>Em <strong>Opções > Notificações</strong>, ajustar o volume em 100%</li>
-                <li>Ativar <strong>SOMENTE</strong>:<br> - Mensagens recebidas<br> - Fim das mensagens</li>
-                <li>Desativar todos os outros (Pronto para enviar, Soltar botão PTT, etc.)</li>
-            </ul>
-        </div>
+        <!-- Seção de Pinagem -->
+        <div class="section-title">📊 TABELA DE PINAGEM (RJ45)</div>
+        <div class="warning-text">⚠️ ATENÇÃO: A numeração segue o padrão do conector fêmea da interface.</div>
         
-        <!-- CAIXA DO QR CODE ATUALIZADA -->
-        <div class="qr-box">
-            <img src="qr.png" alt="QR Code Suporte">
+        <table>
+            <thead>
+                <tr>
+                    <th>PINO</th>
+                    <th style="width: 25%;">FUNÇÃO</th>
+                    <th>ESPECIFICAÇÕES E APLICAÇÃO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Entrada RX (Base)</td>
+                    <td>Áudio vindo do rádio móvel. Capacitor de 10µF interno para proteção DC.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>COR Negativo</td>
+                    <td>Ativação via GND. Padrão Motorola (ex: GM300, M120, PRO5100).</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Saída TX (Mic)</td>
+                    <td>Áudio enviado para o rádio. Ajustar ganho no Zello/PC.</td>
+                </tr>
+                <tr>
+                    <td>4 / 6</td>
+                    <td>GND</td>
+                    <td>Referência negativa comum para áudio e dados.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>PTT Rádio</td>
+                    <td>Comando de transmissão (chaveia para o GND quando ativo).</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>COR Positivo</td>
+                    <td>Ativação via voltagem (1.5V a 12V). Padrão Vertex/Yaesu.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>RX + COR (HT)</td>
+                    <td>Uso em HTs. Detecta áudio e portadora simultaneamente no pino de fone.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Modos de Operação -->
+        <div class="section-title">🔧 MODOS DE INSTALAÇÃO</div>
+        <div class="grid-container">
+            <div class="card">
+                <h3>🔷 MODO RÁDIO BASE / MÓVEL</h3>
+                <ul>
+                    <li><strong>Conexão:</strong> Áudio RX no pino 1.</li>
+                    <li><strong>Proteção:</strong> Capacitor de 10µF integrado evita ruídos e protege o rádio de retorno DC.</li>
+                    <li><strong>Squelch:</strong> Use pino 2 ou 7 conforme o modelo do rádio.</li>
+                    <li><strong>Indicado:</strong> Repetidoras e Estações Fixas.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🔷 MODO HT (PORTÁTIL)</h3>
+                <ul>
+                    <li><strong>Conexão:</strong> Áudio e COR pelo pino 8.</li>
+                    <li><strong>Simplicidade:</strong> Dispensa a abertura do rádio para pegar sinal de COR interno.</li>
+                    <li><strong>Detecção:</strong> Chaveamento automático via presença de áudio no alto-falante.</li>
+                    <li><strong>Compatível:</strong> Baofeng, Quansheng, Kenwood.</li>
+                </ul>
+            </div>
         </div>
-    </div>
 
-    <div class="tech-note">
-        <h4>🧠 NOTA TÉCNICA</h4>
-        <ul>
-            <li>Utilizar cabos blindados nas conexões de áudio (pinos 1, 3 e 8) para evitar interferência de RF</li>
-            <li>A interface Z-Link é projetada para funcionamento Plug-and-Play com cabos adequados</li>
-        </ul>
-    </div>
+        <!-- Configuração Zello e Suporte -->
+        <div class="bottom-row">
+            <div class="zello-box">
+                <h3>⚠️ AJUSTES CRÍTICOS NO ZELLO</h3>
+                <p>O USO DE VOX NO SOFTWARE É ESTRITAMENTE PROIBIDO.</p>
+                <ul>
+                    <li><strong>Botão PTT:</strong> Vá em Opções > Botão PTT > Adicionar (+). Pressione o PTT do rádio para o sistema mapear como "F7".</li>
+                    <li><strong>Alertas de Áudio:</strong> Ajuste em 100%.</li>
+                    <li><strong>Sinalização:</strong> Ative apenas "Mensagens Recebidas" e "Fim de Mensagem". Desative bips de erro.</li>
+                    <li><strong>Fluxo:</strong> A interface gerencia o tempo de queda (Hang Time) fisicamente.</li>
+                </ul>
+            </div>
+            
+            <div class="qr-box">
+                <img src="qr.png" alt="QR Code Suporte">
+                <span>SUPORTE TÉCNICO</span>
+            </div>
+        </div>
 
-    <div class="footer">
-        DOCUMENTAÇÃO TÉCNICA OFICIAL | PROPRIEDADE DE: DINIZ-RF | Z-LINK V5.1 – 2026
+        <!-- Rodapé Técnico -->
+        <div class="tech-note">
+            <h4>🧠 CONSIDERAÇÕES TÉCNICAS</h4>
+            <p>Para máxima performance, utilize cabos blindados nos pinos 1, 3 e 8. Isso previne o "travamento" do PTT por indução de RF. A Z-Link V5.1 possui isolamento galvânico parcial para maior segurança dos equipamentos conectados.</p>
+        </div>
+
+        <footer class="footer">
+            DINIZ-RF - SOLUÇÕES EM RADIOCOMUNICAÇÃO &copy; 2026 - TODOS OS DIREITOS RESERVADOS
+        </footer>
     </div>
 
 </body>
